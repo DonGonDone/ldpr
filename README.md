@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# LDPR Profile Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Описание
 
-## Available Scripts
+Это проект для управления пользовательскими профилями (регистрация, вход, редактирование профиля) на стеке Node.js (Express, Sequelize, SQLite) + React.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Структура проекта
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+LDPR/
+│
+├── node_modules/                  # node-модули фронтенда
+├── public/                        # статика для React
+├── server/                        # backend (Node.js/Express)
+│   ├── node_modules/
+│   ├── db.sqlite                  # база данных SQLite
+│   ├── index.js                   # основной файл сервера
+│   ├── models.js                  # описание моделей Sequelize
+│   ├── package-lock.json
+│   └── package.json
+│
+├── src/                           # исходники React-фронтенда
+│   ├── components/                # переиспользуемые компоненты (Header, Footer)
+│   ├── pages/                     # страницы (Profile, Login, Register и т.д.)
+│   ├── utils/                     # утилиты (например, AuthContext.js)
+│   ├── App.css
+│   ├── App.js
+│   ├── App.test.js
+│   ├── index.css
+│   ├── index.js
+│   ├── logo.svg
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+│
+├── .gitignore
+├── package-lock.json              # frontend
+├── package.json                   # frontend
+└── README.md
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Быстрый старт через Visual Studio Code
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Клонируйте репозиторий и откройте папку проекта в VS Code
 
-### `npm run build`
+```bash
+git clone <ВАШ_РЕПОЗИТОРИЙ>
+cd LDPR
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. Установите зависимости
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Backend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+cd server
+npm install
+```
 
-### `npm run eject`
+#### Frontend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+cd ..
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 3. Запуск Backend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+В новой вкладке терминала VS Code:
 
-## Learn More
+```bash
+cd server
+node index.js
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> Сервер запустится на [http://localhost:5000](http://localhost:5000)  
+> При первом запуске создаётся база данных `db.sqlite` в папке `server/`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+### 4. Запуск Frontend (React)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+В новой вкладке терминала (из корня проекта):
 
-### Analyzing the Bundle Size
+```bash
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- React-приложение откроется на [http://localhost:3000](http://localhost:3000)
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Важно для локальной сети
 
-### Advanced Configuration
+Если нужно, чтобы другие устройства в вашей сети могли зайти на сайт:
+- Запускайте frontend с параметром:
+  ```bash
+  HOST=0.0.0.0 npm start
+  ```
+- Дайте другу ваш внутренний IP, например:  
+  `http://192.168.1.42:3000`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Советы
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Если добавляете новые поля в `server/models.js`, удаляйте старый `db.sqlite` перед запуском сервера (или используйте миграции).
+- Для автоматической перезагрузки backend используйте [`nodemon`](https://www.npmjs.com/package/nodemon):
+  ```bash
+  npm install -g nodemon
+  nodemon index.js
+  ```
+- Для тестирования API удобно использовать [Postman](https://www.postman.com/) или [Insomnia](https://insomnia.rest/).
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Проблемы и решения
+
+- **Поля профиля не сохраняются:**  
+  Проверьте, что структура таблицы в `db.sqlite` соответствует модели в `server/models.js`. Если нет — удалите базу и запустите сервер снова.
+- **CORS ошибка:**  
+  Проверьте, что backend использует пакет `cors`.
+- **Не работает вход с другого устройства:**  
+  Проверьте настройки firewall и правильность IP-адреса.
+- **Поля профиля сбрасываются после входа:**  
+  Убедитесь, что backend возвращает все нужные поля при логине (см. `server/index.js`).
+
+---
+
+## Контакты
+
+Если возникнут вопросы — обращайтесь к автору репозитория!

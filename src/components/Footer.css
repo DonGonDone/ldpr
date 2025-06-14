@@ -1,0 +1,26 @@
+.footer {
+  background: #386cb3;
+  color: #fff;
+  padding: 36px 56px;
+  margin-top: auto;
+}
+.footer-block {
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.footer-block > div {
+  min-width: 200px;
+}
+.footer-bold {
+  color: #ffe754;
+  font-weight: bold;
+}
+.footer-info > div {
+  margin: 8px 0;
+}
+.footer h4 {
+  margin: 0 0 8px 0;
+  font-weight: bold;
+}

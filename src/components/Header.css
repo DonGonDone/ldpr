@@ -1,0 +1,58 @@
+.header {
+  background: #386cb3;
+  color: #fff;
+  padding: 0 20px;
+  height: 80px;              
+  min-height: 80px;          
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 12px rgba(56,108,179,0.07);
+}
+
+.header-btn,
+.logo {
+  font-size: 0.94rem;        
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  color: #ffe754;
+  background: #386cb3;
+  border: 2px solid #ffe754;
+  border-radius: 7px;
+  padding: 0 16px;          
+  height: 32px;              
+  min-width: 96px;           
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border 0.18s;
+  box-shadow: 0 1px 7px rgba(56,108,179,0.09);
+  outline: none;
+  margin-right: 0;
+  text-decoration: none;
+}
+
+/* Желтая только при наведении! */
+.header-btn:hover,
+.logo:hover {
+  background: #ffe754;
+  color: #386cb3;
+  border: 2px solid #386cb3;
+}
+
+/* При фокусе и клике возвращаем исходный стиль */
+.header-btn:focus,
+.header-btn:active,
+.logo:focus,
+.logo:active {
+  background: #386cb3;
+  color: #ffe754;
+  border: 2px solid #ffe754;
+}
+
+.header-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
