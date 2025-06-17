@@ -18,4 +18,21 @@ const User = sequelize.define('User', {
   dob: DataTypes.STRING
 });
 
-module.exports = { sequelize, User };
+// Новая модель заявки
+const Request = sequelize.define('Request', {
+  title: DataTypes.STRING,
+  description: DataTypes.TEXT,
+  lat: DataTypes.FLOAT,
+  lng: DataTypes.FLOAT,
+  address: DataTypes.STRING,
+  done: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+});
+
+// Связь: заявка принадлежит пользователю
+Request.belongsTo(User, { foreignKey: 'userId' });
+User.hasMany(Request, { foreignKey: 'userId' });
+
+module.exports = { sequelize, User, Request };

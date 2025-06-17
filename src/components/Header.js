@@ -15,43 +15,53 @@ export default function Header() {
 
   return (
     <header className="header">
-      <button className="logo" onClick={() => navigate("/")}>
-        ЛДПР
-      </button>
-      <div className="header-links">
-        <a
-          href="https://krasnoyarsk.ldpr.ru"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="header-btn"
-        >
-          САЙТ ЛДПР
-        </a>
-        {!user ? (
-          <button
-            className="header-btn"
-            onClick={() => navigate("/login")}
-            type="button"
-          >
-            ВОЙТИ
+      <div className="header-content">
+        <div className="header-left">
+          <button className="header-btn" onClick={() => navigate("/")}>
+            ЛДПР
           </button>
-        ) : location.pathname === "/profile" ? (
-          <button
+        </div>
+        <div className="header-center">
+          <div className="header-center-title">Хотите поделиться событием?</div>
+          <div className="header-center-subtitle">
+            Вы можете сообщить о нем, для этого нажмите на карту
+          </div>
+        </div>
+        <div className="header-right">
+          <a
+            href="https://krasnoyarsk.ldpr.ru"
+            target="_blank"
+            rel="noopener noreferrer"
             className="header-btn"
-            onClick={handleLogout}
-            type="button"
           >
-            ВЫЙТИ
-          </button>
-        ) : (
-          <button
-            className="header-btn"
-            onClick={() => navigate("/profile")}
-            type="button"
-          >
-            ПРОФИЛЬ
-          </button>
-        )}
+            САЙТ ЛДПР
+          </a>
+          {!user ? (
+            <button
+              className="header-btn"
+              onClick={() => navigate("/login")}
+              type="button"
+            >
+              ВОЙТИ
+            </button>
+          ) : location.pathname === "/profile" ? (
+            <button
+              className="header-btn"
+              onClick={handleLogout}
+              type="button"
+            >
+              ВЫЙТИ
+            </button>
+          ) : (
+            <button
+              className="header-btn"
+              onClick={() => navigate("/profile")}
+              type="button"
+            >
+              ПРОФИЛЬ
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );

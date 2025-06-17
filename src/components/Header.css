@@ -1,13 +1,53 @@
 .header {
-  background: #386cb3;
-  color: #fff;
-  padding: 0 20px;
-  height: 80px;              
-  min-height: 80px;          
+  background: #4276bf;
+  padding: 0 32px;
+  height: 90px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 12px rgba(56,108,179,0.07);
+  position: relative;
+}
+
+.header-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 100%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.header-center-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #ffe066;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.header-center-subtitle {
+  font-size: 1.15rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
 }
 
 .header-btn,
@@ -55,4 +95,21 @@
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+.header-center-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 8px 0 0 0;
+  max-width: 700px;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  z-index: 1;
+  pointer-events: none; /* чтобы не мешать кнопкам */
 }

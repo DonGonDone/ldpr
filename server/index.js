@@ -2,12 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { sequelize, User } = require('./models');
+const { sequelize, User, Request } = require('./models');
 const app = express();
 const SECRET = 'YOUR_SECRET_KEY'; // замените на свой секрет!
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '5mb' }));
 
 app.post('/api/register', async (req, res) => {
   const { lastname, firstname, middlename, email, password, phone, address, dob } = req.body;
@@ -127,6 +127,44 @@ app.patch('/api/user/:id', async (req, res) => {
   } catch (e) {
     console.error('Ошибка при обновлении профиля:', e);
     res.status(500).json({ error: 'Не удалось сохранить изменения' });
+  }
+});
+
+app.get('/api/requests', async (req, res) => {
+  const requests = await Request.findAll({ include: [{ model: User, attributes: ['id', 'firstname', 'lastname', 'email'] }] });
+  res.json(requests);
+});
+
+// Получить заявки пользователя
+app.get('/api/user/:id/requests', async (req, res) => {
+  const { id } = req.params;
+  const requests = await Request.findAll({ where: { userId: id } });
+  res.json(requests);
+});
+
+// Создать заявку
+app.post('/api/requests', async (req, res) => {
+  const { title, description, lat, lng, userId, address } = req.body;
+  if (!title || !lat || !lng || !userId) {
+    return res.status(400).json({ error: 'Не все поля заполнены' });
+  }
+  try {
+    const request = await Request.create({ title, description, lat, lng, userId, address });
+    res.status(201).json(request);
+  } catch (e) {
+    res.status(500).json({ error: 'Ошибка при создании заявки' });
+  }
+});
+
+app.patch('/api/requests/:id/done', async (req, res) => {
+  try {
+    const request = await Request.findByPk(req.params.id);
+    if (!request) return res.status(404).json({ error: "Not found" });
+    request.done = req.body.done;
+    await request.save();
+    res.json(request);
+  } catch (e) {
+    res.status(500).json({ error: "Ошибка сервера" });
   }
 });
 
