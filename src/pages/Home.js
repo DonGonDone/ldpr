@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Home.css";
 import RequestForm from "../components/RequestForm";
 import { useAuth } from "../utils/AuthContext";
@@ -9,6 +9,7 @@ import { useAuth } from "../utils/AuthContext";
 export default function Home() {
   const [requests, setRequests] = useState([]);
   const location = useLocation();
+  const navigate = useNavigate();
   const [mapState, setMapState] = useState({
     center: [56.01, 92.85], // Координаты центра Красноярска
     zoom: 11,
@@ -77,8 +78,6 @@ export default function Home() {
   // Функция для "очистки" адреса от страны и города
   function cleanAddress(address) {
     if (!address) return "";
-    // Пример: "Россия, Красноярск, улица Ленина, 1" → "улица Ленина, 1"
-    // Удаляем "Россия," и "Красноярск," (или другой город)
     return address
       .replace(/^Россия,\s*/i, "")
       .replace(/^[^,]+,\s*/i, ""); // удаляет первую часть до запятой (город)
@@ -102,7 +101,11 @@ export default function Home() {
               )}
               <div className="home-request-title">{req.title}</div>
               {req.description && (
-                <div className="home-request-description">{req.description}</div>
+                <div className="home-request-description">
+                  {req.description.length > 500
+                    ? req.description.slice(0, 500) + "…"
+                    : req.description}
+                </div>
               )}
             </div>
           ))}
@@ -120,7 +123,12 @@ export default function Home() {
             height="100%"
             instanceRef={mapRef}
             modules={["geoObject.addon.balloon"]}
+            controls={[]} // это гарантировано убирает все контролы, включая поиск
             onClick={(e) => {
+              if (!user) {
+                navigate("/login");
+                return;
+              }
               const coords = e.get("coords");
               setFormCoords({ lat: coords[0], lng: coords[1] });
               setShowForm(true);

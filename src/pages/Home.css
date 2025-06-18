@@ -56,7 +56,7 @@
   height: calc(100vh - 90px);
   background: #f7faff;
   min-height: 500px;
-  width: 100vw;
+  width: 100%;
   box-sizing: border-box;
   overflow: hidden;
   margin: 0;
@@ -67,10 +67,9 @@
   width: 320px;
   min-width: 220px;
   max-width: 600px;
-  resize: horizontal;
+  resize: none;
   overflow-x: auto;
   background: #fff;
-  border-radius: 0 18px 18px 0;
   box-shadow: 0 2px 16px #386cb31a;
   padding: 18px 0 18px 0;
   display: flex;
@@ -116,28 +115,39 @@
   font-weight: 600;
   margin-bottom: 2px;
   font-size: 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* убираем ограничения по строке */
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  word-break: break-word;
 }
+
 .home-request-title {
   font-size: 17px;
   font-weight: 700;
   color: #222;
   margin-bottom: 2px;
+  /* перенос по строкам */
+  white-space: normal;
+  word-break: break-word;
 }
+
+.home-request-description,
 .home-request-desc {
   color: #444;
   font-size: 15px;
   margin-bottom: 2px;
   white-space: pre-line;
+  word-break: break-word;
+  max-width: 100%;
+  /* ограничение высоты не ставим, переносим строки */
+  overflow: visible;
 }
 
 .home-map-panel {
   flex: 1 1 0;
   min-width: 0;
   height: 100%;
-  border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 2px 16px #386cb31a;
   background: #fff;
