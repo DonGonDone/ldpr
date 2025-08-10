@@ -7,16 +7,19 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .container {
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
 }
+
 header {
   background: #4181d7;
   color: #ffe449;
   padding: 0;
 }
+
 .header-row {
   display: flex;
   align-items: center;
@@ -24,6 +27,7 @@ header {
   padding: 0 32px;
   height: 80px;
 }
+
 .ldpr-btn {
   background: #4181d7;
   border: 2px solid #ffe449;
@@ -35,27 +39,32 @@ header {
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .header-title {
   font-size: 32px;
   font-weight: bold;
   text-align: center;
   color: #ffe449;
 }
+
 .header-subtitle {
   font-size: 17px;
   color: #fff;
   text-align: center;
 }
+
 .header-center {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .header-right {
   display: flex;
   gap: 16px;
 }
+
 .header-btn {
   background: #4181d7;
   border: 2px solid #ffe449;
@@ -70,13 +79,16 @@ header {
 .main-layout {
   display: flex;
   min-height: 520px;
+  flex: 1;
 }
+
 aside {
   background: #fff;
   width: 215px;
   border-right: 1px solid #e7eaf1;
   padding: 24px 0 0 18px;
 }
+
 .nav-link {
   display: block;
   color: #4181d7;
@@ -85,37 +97,27 @@ aside {
   text-decoration: none;
   margin-bottom: 12px;
 }
+
 .nav-link.selected {
   color: #4181d7;
 }
+
 .main-content {
   flex: 1;
-  padding: 0 0 0 0;
+  padding: 0;
   display: flex;
   align-items: flex-start;
 }
+
 .map-block {
   width: 100%;
-  padding: 24px 0 0 32px;
-  position: relative;
+  height: calc(100vh - 80px - 86px);
 }
-.address-input {
-  font-size: 15px;
-  padding: 8px 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 8px;
-  width: 210px;
-}
-.find-btn {
-  background: #ffe449;
-  color: #222;
-  font-weight: bold;
+
+#yandex-map {
+  width: 100%;
+  height: 100%;
   border: none;
-  border-radius: 4px;
-  padding: 8px 22px;
-  font-size: 15px;
-  cursor: pointer;
 }
 
 .profile-main {
@@ -126,11 +128,13 @@ aside {
   background: #f4f7fb;
   padding: 40px 0 0 0;
 }
+
 .profile-container {
   display: flex;
   gap: 42px;
   background: none;
 }
+
 .profile-avatar-block {
   display: flex;
   flex-direction: column;
@@ -144,6 +148,7 @@ aside {
   min-height: 320px;
   justify-content: flex-start;
 }
+
 .profile-avatar {
   width: 120px;
   height: 120px;
@@ -155,6 +160,7 @@ aside {
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .profile-edit-btn {
   background: #4caf50;
   border: none;
@@ -166,6 +172,7 @@ aside {
   cursor: pointer;
   transition: background 0.2s;
 }
+
 .profile-info-block {
   background: #fff;
   border-radius: 14px;
@@ -176,12 +183,14 @@ aside {
   flex-direction: column;
   gap: 24px;
 }
+
 .profile-fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px 32px;
   margin-bottom: 16px;
 }
+
 .profile-fields label {
   color: #888;
   font-weight: normal;
@@ -190,19 +199,23 @@ aside {
   min-width: 112px;
   display: inline-block;
 }
+
 .profile-fields span {
   font-weight: bold;
   font-size: 16px;
 }
+
 .profile-requests {
   margin-top: 22px;
 }
+
 .profile-requests-title {
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 8px;
   color: #4181d7;
 }
+
 .profile-requests-empty {
   background: #f4f7fb;
   color: #7a869a;
@@ -220,6 +233,7 @@ aside {
   background: #f4f7fb;
   padding: 48px 0 0 0;
 }
+
 .auth-form {
   background: #fff;
   border-radius: 14px;
@@ -231,6 +245,7 @@ aside {
   align-items: stretch;
   gap: 18px;
 }
+
 .auth-title {
   font-size: 26px;
   font-weight: bold;
@@ -238,6 +253,7 @@ aside {
   margin-bottom: 14px;
   text-align: center;
 }
+
 .auth-form input[type="text"],
 .auth-form input[type="email"],
 .auth-form input[type="password"] {
@@ -250,9 +266,11 @@ aside {
   outline: none;
   transition: border 0.2s;
 }
+
 .auth-form input:focus {
   border: 1.5px solid #4181d7;
 }
+
 .auth-btn {
   background: #4181d7;
   color: #fff;
@@ -265,18 +283,22 @@ aside {
   margin-top: 8px;
   margin-bottom: 6px;
 }
+
 .auth-form .auth-btn:active {
   background: #345ea8;
 }
+
 .auth-bottom-text {
   font-size: 16px;
   color: #222;
   text-align: center;
 }
+
 .auth-bottom-text a {
   color: #4181d7;
   text-decoration: underline;
 }
+
 .auth-bottom-text a:hover {
   color: #295591;
   text-decoration: underline;
@@ -288,22 +310,26 @@ footer {
   margin-top: auto;
   padding: 30px 0 26px 0;
 }
+
 .footer-row {
   display: flex;
   justify-content: space-between;
   gap: 46px;
   font-size: 17px;
 }
+
 .footer-col-title {
   color: #fff;
   font-weight: bold;
   margin-bottom: 4px;
   letter-spacing: 0.5px;
 }
+
 .footer-highlight {
   color: #ffe449;
   font-weight: bold;
 }
+
 .footer-icon {
   font-size: 17px;
   margin-right: 3px;
@@ -338,6 +364,7 @@ footer {
     padding: 18px 7vw;
   }
 }
+
 @media (max-width: 600px) {
   .auth-form, .profile-info-block, .profile-avatar-block {
     min-width: unset;
